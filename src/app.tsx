@@ -45,7 +45,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       title: <AvatarName />,
       render: (_, avatarChildren) => {
         return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
-      },
+      }, 
     },
     waterMarkProps: {
       content: initialState?.currentUser?.name,

@@ -1,7 +1,7 @@
 import {UploadOutlined,} from '@ant-design/icons';
 import {Button, Card, Form, Input, message, Select, Space, Upload} from 'antd';
 import React, {useState} from 'react';
-import {genChartByAiAsyncUsingPost} from "@/services/cxybi/chartController";
+import {genChartByAiAsyncMqUsingPost, genChartByAiAsyncUsingPost} from "@/services/cxybi/chartController";
 import TextArea from "antd/es/input/TextArea";
 import {useForm} from "antd/es/form/Form";
 
@@ -26,13 +26,14 @@ const AddChartAsync: React.FC = () => {
     setSubmitting(true);
     // 原先在控制台测试结果
     // console.log('表单内容', values);
-    // todo 对接后端，上传数据
+    // 对接后端，上传数据
     const params = {
       ...values,
       file: undefined
     }
     try {
-      const res = await genChartByAiAsyncUsingPost(params, {}, values.file.file.originFileObj);
+      // const res = await genChartByAiAsyncUsingPost(params, {}, values.file.file.originFileObj);
+      const res = await genChartByAiAsyncMqUsingPost(params, {}, values.file.file.originFileObj);
       if (!res?.data) {
         message.error('分析失败');
       } else {
